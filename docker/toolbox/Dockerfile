@@ -6,3 +6,4 @@ RUN apt-get update \
   && cd /usr/local/bin \
   && ln -s /usr/bin/python3 python \
   && pip3 install --upgrade pip 
+CMD tail -f /dev/null
