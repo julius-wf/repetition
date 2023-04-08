@@ -1,0 +1,25 @@
+#!groovy
+// Check aws1 properties
+properties([disableConcurrentBuilds()])
+
+pipeline {
+    agent { 
+        label 'main'
+        }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+        timestamps()
+    }
+    stages {
+        stage("First step") {
+            steps {
+                sh 'ssh root@aws1 \'hostname\''
+            }
+        }
+        stage("Second step") {
+            steps {
+                sh 'ssh root@aws1 \'uptime\''
+            }
+        }
+    }
+}
